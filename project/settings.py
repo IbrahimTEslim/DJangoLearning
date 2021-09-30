@@ -37,6 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Installed Apps
+    'job',
+    'blog',
+    'home',
+    'accounts',
+    'contact',
 ]
 
 MIDDLEWARE = [
@@ -75,9 +82,12 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+'ENGINE': 'django.db.backends.oracle',
+        'NAME': '(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=orclpdb.mshome.net)))',
+        'USER': 'JobBoard',
+        'PASSWORD': 'JobBoard',
+        'HOST': '',
+        'PORT': '',    }
 }
 
 
