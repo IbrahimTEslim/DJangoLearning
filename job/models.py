@@ -2,6 +2,9 @@ from django.db import models
 from django.db.models.base import Model
 # from time import timezone
 from datetime import datetime
+from django.db.models.deletion import CASCADE
+
+from django.db.models.fields.related import ForeignKey
 
 # Create your models here.
 JOB_TYPE = (
@@ -17,7 +20,14 @@ class job(models.Model):
     vacancy = models.IntegerField(default=1)
     salary = models.IntegerField(default=0)
     experiance = models.IntegerField(default=1)
+    category = ForeignKey('category',on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
+
+
+class category(models.Model):
+    name = models.CharField(max_length=50)
+    def __str__(self):
+        return self.name
 
