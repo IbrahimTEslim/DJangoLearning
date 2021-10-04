@@ -5,12 +5,21 @@ from datetime import datetime
 from django.db.models.deletion import CASCADE
 
 from django.db.models.fields.related import ForeignKey
+from django.http import request
 
 # Create your models here.
 JOB_TYPE = (
     ('Full Time','Full Time'),
     ('Part Time', 'Part Time'),
 )
+
+def upload_image(instance,filename):
+    imageName , extension = filename.split(".")
+    print("Instance Type: ",type(instance))
+    print("Filename Type: ",type(filename))
+    # print("Testoo Type: ",type(testoo))
+    return "jobs/%s/%s.%s"%(instance.id,instance.id,extension)
+
 
 class job(models.Model):
     title = models.CharField(max_length=200)
@@ -21,6 +30,7 @@ class job(models.Model):
     salary = models.IntegerField(default=0)
     experiance = models.IntegerField(default=1)
     category = ForeignKey('category',on_delete=models.CASCADE)
+    image = models.ImageField(upload_to=upload_image)
 
     def __str__(self):
         return self.title
